@@ -5,6 +5,9 @@ A library to query a player's overwatch stats from Battle.net
 - Python 3+
 - BeautifulSoup 4
 
+## Installation
+	pip install overwatch-stats
+
 ## Usage
 	import overwatch.stats
 	stats = overwatch.stats.query('pc', 'kr', '현종환#3104')
