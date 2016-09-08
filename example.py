@@ -5,7 +5,8 @@ import overwatch.stats
 stats = overwatch.stats.query('pc', 'kr', '현종환-3104')
 pprint(stats, indent=2)
 """
-{ 'quick': { 'heroes': { 'ana': { 'cards': 5,
+{ 'level': 115,
+  'quick': { 'heroes': { 'ana': { 'cards': 5,
                                   'damage_done': 29781,
                                   'damage_done_average': 1172.97,
                                   'damage_done_most_in_game': 3519,

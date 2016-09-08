@@ -133,6 +133,12 @@ def query(platform, region, battle_tag):
     tree = lxml.html.fromstring(response.text)
 
     output = dict()
+    output['level'] = extract_level(tree)
+
+    competitive_rank = extract_competitive_rank(tree)
+    if competitive_rank:
+        output['competitive_rank'] = competitive_rank
+
     for mode in ('quick', 'competitive'):
         if not has_played(tree, mode):
             continue
@@ -144,12 +150,6 @@ def query(platform, region, battle_tag):
         
         # overall
         output[mode]['overall'] = extract_stats(tree, mode, overall_category_id)
-        # extra stats
-        output[mode]['overall']['level'] = extract_level(tree)
-        if mode == 'competitive':
-            competitive_rank = extract_competitive_rank(tree)
-            if competitive_rank:
-                output[mode]['overall']['competitive_rank'] = competitive_rank
                 
         # heroes
         time_played_ratios = extract_time_played_ratios(tree, mode)
