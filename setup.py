@@ -5,7 +5,6 @@ setup(
     version='0.1.0',
     description='A library to query a player\'s overwatch stats from Battle.net',
     url='https://github.com/hyeon0145/overwatch-stats',
-    download_url='https://github.com/hyeon0145/overwatch-stats/tarball/master',
     author='Jonghwan Hyeon',
     author_email='hyeon0145@gmail.com',
     license='WTFPL',
