@@ -73,7 +73,11 @@ def has_played(tree, play_mode, category_id=overall_category_id):
 
 def extract_level(tree):
     level = tree.find('.//*[@class="player-level"]')
-    return int(level.text_content().strip())
+
+    match = re.search(r'/playerlevelrewards/(0x[0-9A-Z]+)_Border', level.get('style'))
+    base_level = level_ids[match.group(1)]
+
+    return base_level + int(level.text_content().strip())
 
 def extract_competitive_rank(tree):
     competitive_rank = tree.find('.//*[@class="competitive-rank"]')
