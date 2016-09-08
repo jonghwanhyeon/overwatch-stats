@@ -19,5 +19,5 @@ setup(
     ],
     keywords='overwatch stats',
     packages=find_packages(),
-    install_requires=['requests', 'beautifulsoup4'],
+    install_requires=['requests', 'lxml'],
 )
