@@ -77,7 +77,7 @@ def extract_level(soup):
 
 def extract_competitive_rank(soup):
     competitive_rank = soup.find(attrs={ 'class': 'competitive-rank' })
-    if not competitive_rank:
+    if not competitive_rank: # not played competitive mode or not completed placement matches
         return None
     
     return int(competitive_rank.text.strip())
@@ -141,7 +141,10 @@ def query(platform, region, battle_tag):
         output[mode]['overall'] = extract_stats(soup, mode, overall_category_id)
         # extra stats
         output[mode]['overall']['level'] = extract_level(soup)
-        output[mode]['overall']['competitive_rank'] = extract_competitive_rank(soup)
+        if mode == 'competitive':
+            competitive_rank = extract_competitive_rank(soup)
+            if competitive_rank:
+                output[mode]['overall']['competitive_rank'] = competitive_rank
                 
         # heroes
         time_played_ratios = extract_time_played_ratios(soup, mode)
