@@ -14,8 +14,8 @@ A Python library to query a player's overwatch stats from Battle.net
 
 # API
 ## overwatch.stats.query(platform, region, battle_tag)
-Queries a player's stats from the Battle.net
+Queries a player's stats from the Battle.net. 
 ### Parameters
 - `platform`: `pc`, `xbl` or `psn`
-- `region`: `ko`, `us` or `eu`
+- `region`: `kr`, `us` or `eu`
 - `battle_tag`: the player's battle tag
