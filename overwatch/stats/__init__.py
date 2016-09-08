@@ -81,7 +81,7 @@ def extract_level(tree):
 
 def extract_competitive_rank(tree):
     competitive_rank = tree.find('.//*[@class="competitive-rank"]')
-    if not competitive_rank: # not played competitive mode or not completed placement matches
+    if competitive_rank is None: # not played competitive mode or not completed placement matches
         return None
     
     return int(competitive_rank.text_content().strip())
