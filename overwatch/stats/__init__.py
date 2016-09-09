@@ -38,15 +38,15 @@ def parse_time(value):
         })
     else: # e.g. 98 HOURS
         patterns = {
-            'hours': r'(\d+) hours?',
-            'minutes': r'(\d+) minutes?',
-            'seconds': r'(\d+) seconds?',
+            'hours': r'(\d+(?:\.\d+)?) hours?',
+            'minutes': r'(\d+(?:\.\d+)?) minutes?',
+            'seconds': r'(\d+(?:\.\d+)?) seconds?',
         }
         
         for key, pattern in patterns.items():
             match = re.search(pattern, value, re.IGNORECASE)
             if match:
-                return datetime.timedelta(**{ key: int(match.group(1)) })
+                return datetime.timedelta(**{ key: parse_number(match.group(1)) })
 
 def parse_stat_value(value):
     # 41 -> int
