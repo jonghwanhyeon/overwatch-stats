@@ -26,7 +26,7 @@ hero_category_ids = {
 }
 inverted_hero_category_ids = { category_id: hero for hero, category_id in hero_category_ids.items() }
 
-# Brought from https://github.com/SunDwarf/OWAPI/blob/master/owapi/prestige.py
+# Taken from https://github.com/SunDwarf/OWAPI/blob/master/owapi/prestige.py
 level_ids = {
     # Bronze
     '0x0250000000000918': 0,
