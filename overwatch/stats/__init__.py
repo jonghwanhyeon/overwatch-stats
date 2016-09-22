@@ -3,17 +3,20 @@ import datetime
 
 import requests
 import lxml.html
+import inflect
 
 from .ids import *
 
 stats_url = 'https://playoverwatch.com/en-us/career/{platform}/{region}/{battle_tag}'
 
-def canonicalize_stat_name(name):
-    canonicalized_name = name.lower()
-    canonicalized_name = canonicalized_name.replace('-', ' ')
-    canonicalized_name = re.sub(r'\s+', '_', canonicalized_name)
-    
-    return canonicalized_name
+inflector = inflect.engine()
+def underscorize_stat_name(name):
+    words = re.split(r'\s+', name.lower().replace('-', ' '))
+    singular_words = map(inflector.singular_noun, words)
+
+    return '_'.join([
+        singular_word or word for singular_word, word in zip(singular_words, words)
+    ])
 
 def parse_number(value):
     value = value.replace(',', '')
@@ -121,7 +124,7 @@ def extract_stats(tree, play_mode, category_id):
     output = dict()
     for row in stats.findall('.//tbody//tr'):
         name, value = row.findall('.//td')
-        output[canonicalize_stat_name(name.text_content().strip())] = parse_stat_value(value.text_content().strip())
+        output[underscorize_stat_name(name.text_content().strip())] = parse_stat_value(value.text_content().strip())
     
     return output
 
