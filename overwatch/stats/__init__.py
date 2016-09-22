@@ -52,9 +52,9 @@ def parse_time(value):
                 return datetime.timedelta(**{ key: parse_number(match.group(1)) })
 
 def parse_stat_value(value):
-    # 41 -> int
-    # 1,583,117 -> int
-    # 0.05 -> float
+    # 41 -> int(41)
+    # 1,583,117 -> int(1583117)
+    # 0.05 -> float(0.05)
     # 14%-> float(0.14)
     # 03:52 -> timedelta
     # 09:23:07 -> timedelta
