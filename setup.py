@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='overwatch-stats',
-    version='0.1.5',
+    version='0.1.6',
     description='A library to query a player\'s overwatch stats from Battle.net',
     url='https://github.com/hyeon0145/overwatch-stats',
     author='Jonghwan Hyeon',
@@ -19,5 +19,5 @@ setup(
     ],
     keywords='overwatch stats',
     packages=find_packages(),
-    install_requires=['requests', 'lxml'],
+    install_requires=['requests', 'lxml', 'inflect'],
 )

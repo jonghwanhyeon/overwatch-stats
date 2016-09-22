@@ -4,6 +4,7 @@ A Python library to query a player's overwatch stats from Battle.net
 ## Requirements
 - Python 3+
 - lxml
+- inflect
 
 ## Installation
 	pip install overwatch-stats
