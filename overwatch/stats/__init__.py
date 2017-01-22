@@ -65,12 +65,25 @@ def parse_stat_value(value):
     except:
         return parse_time(value)
 
-def has_played(tree, play_mode, category_id=overall_category_id):
+def extract_play(tree, play_mode):
     if play_mode not in ('quick', 'competitive'):
         raise ValueError('play_mode should be quick or competitive')
+    
+    if play_mode == 'quick':
+        play_mode = 'quickplay'
 
-    return bool(tree.xpath('.//*[@id="{play_mode}-play"]//div[@data-group-id="stats" and @data-category-id="{category_id}"]'.format(
-        play_mode=play_mode, 
+    play = tree.xpath('.//div[@id="{play_mode}"]'.format(play_mode=play_mode))
+    if not play: # e.g. not played the competitive mode
+        return None
+    
+    return play[0]
+
+def has_played(tree, play_mode, category_id=overall_category_id):
+    play = extract_play(tree, play_mode)
+    if play is None:
+        return False
+
+    return bool(play.xpath('.//div[@data-group-id="stats" and @data-category-id="{category_id}"]'.format(
         category_id=category_id
     )))
 
@@ -90,13 +103,12 @@ def extract_competitive_rank(tree):
     return int(competitive_rank.text_content().strip())
 
 def extract_time_played_ratios(tree, play_mode):
-    if play_mode not in ('quick', 'competitive'):
-        raise ValueError('play_mode should be quick or competitive')
-    
-    time_played = tree.xpath('.//*[@id="{play_mode}-play"]//div[@data-group-id="comparisons" and @data-category-id="overwatch.guid.0x0860000000000021"]'.format(
-        play_mode=play_mode
-    ))[0]
-    
+    play = extract_play(tree, play_mode)
+    if play is None:
+        raise ValueError('cannot extract the {play_mode} play'.format(play_mode))
+
+    time_played = play.xpath('.//div[@data-group-id="comparisons" and @data-category-id="overwatch.guid.0x0860000000000021"]')[0]
+
     output = dict()
     for item in time_played.xpath('.//*[contains(@class, "progress-category-item")]'):
         match = re.search(r'/(0x[0-9A-Z]+)\.png$', item.find('img').get('src'))
@@ -109,14 +121,14 @@ def extract_time_played_ratios(tree, play_mode):
     return output
 
 def extract_stats(tree, play_mode, category_id):
-    if play_mode not in ('quick', 'competitive'):
-        raise ValueError('play_mode should be quick or competitive')
-    
-    stats = tree.xpath('.//*[@id="{play_mode}-play"]//div[@data-group-id="stats" and @data-category-id="{category_id}"]'.format(
-        play_mode=play_mode, 
+    play = extract_play(tree, play_mode)
+    if play is None:
+        return None 
+
+    stats = play.xpath('.//div[@data-group-id="stats" and @data-category-id="{category_id}"]'.format(
         category_id=category_id
     ))
-    if not stats: # e.g. not played the competitive mode or a cetain hero
+    if not stats: # e.g. not played a cetain hero
         return None
     
     stats = stats[0]
