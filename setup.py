@@ -7,10 +7,11 @@ setup(
     url='https://github.com/hyeon0145/overwatch-stats',
     author='Jonghwan Hyeon',
     author_email='hyeon0145@gmail.com',
-    license='WTFPL',
+    license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
         'Topic :: Games/Entertainment :: First Person Shooters',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
