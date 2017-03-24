@@ -24,6 +24,7 @@ hero_category_ids = {
     'mei': '0x02E00000000000DD',
     'sombra': '0x02E000000000012E',
     'ana': '0x02E000000000013B',
+    'orisa': '0x02E000000000013E',
 }
 inverted_hero_category_ids = { category_id: hero for hero, category_id in hero_category_ids.items() }
 
