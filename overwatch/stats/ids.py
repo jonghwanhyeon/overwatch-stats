@@ -25,6 +25,7 @@ hero_category_ids = {
     'sombra': '0x02E000000000012E',
     'ana': '0x02E000000000013B',
     'orisa': '0x02E000000000013E',
+    'doomfist': '0x02E000000000012F',
 }
 inverted_hero_category_ids = { category_id: hero for hero, category_id in hero_category_ids.items() }
 
