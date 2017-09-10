@@ -3,6 +3,7 @@ A Python library to query a player's overwatch stats from Battle.net
 
 ## Requirements
 - Python 3.2+
+- requests
 - lxml
 - inflect
 
