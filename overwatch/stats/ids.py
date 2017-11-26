@@ -26,6 +26,7 @@ hero_category_ids = {
     'ana': '0x02E000000000013B',
     'orisa': '0x02E000000000013E',
     'doomfist': '0x02E000000000012F',
+    'moira': '0x02E00000000001A2'
 }
 inverted_hero_category_ids = { category_id: hero for hero, category_id in hero_category_ids.items() }
 
@@ -214,4 +215,4 @@ level_ids = {
     '0x02500000000009CB': 1700,
     '0x02500000000009CC': 1700,
     '0x02500000000009CD': 1700,
-}
+}}
