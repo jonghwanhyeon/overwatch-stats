@@ -4,7 +4,7 @@ setup(
     name='overwatch-stats',
     version='0.2.3',
     description='A library to query a player\'s overwatch stats from Battle.net',
-    url='https://github.com/hyeon0145/overwatch-stats',
+    url='https://github.com/jonghwanhyeon/overwatch-stats',
     author='Jonghwan Hyeon',
     author_email='hyeon0145@gmail.com',
     license='MIT',
