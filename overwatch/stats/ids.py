@@ -1,6 +1,6 @@
-overall_category_id = '0x02E00000FFFFFFFF'
+OVERALL_CATEGORY_ID = '0x02E00000FFFFFFFF'
 
-hero_category_ids = {
+HERO_CATEGORY_IDS = {
     'reaper': '0x02E0000000000002',
     'tracer': '0x02E0000000000003',
     'mercy': '0x02E0000000000004',
@@ -28,10 +28,10 @@ hero_category_ids = {
     'doomfist': '0x02E000000000012F',
     'moira': '0x02E00000000001A2'
 }
-inverted_hero_category_ids = { category_id: hero for hero, category_id in hero_category_ids.items() }
+INVERTED_HERO_CATEGORY_IDS = { category_id: hero for hero, category_id in HERO_CATEGORY_IDS.items() }
 
 # Taken from https://github.com/SunDwarf/OWAPI/blob/master/owapi/prestige.py
-level_ids = {
+LEVEL_IDS = {
     # Bronze
     '0x0250000000000918': 0,
     '0x0250000000000919': 0,
