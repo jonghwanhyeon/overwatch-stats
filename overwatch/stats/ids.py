@@ -26,7 +26,8 @@ HERO_CATEGORY_IDS = {
     'ana': '0x02E000000000013B',
     'orisa': '0x02E000000000013E',
     'doomfist': '0x02E000000000012F',
-    'moira': '0x02E00000000001A2'
+    'moira': '0x02E00000000001A2',
+    'brigitte': '0x02E0000000000195',
 }
 INVERTED_HERO_CATEGORY_IDS = { category_id: hero for hero, category_id in HERO_CATEGORY_IDS.items() }
 
