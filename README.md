@@ -11,8 +11,10 @@ A Python library to query a player's overwatch stats from Battle.net
 	pip install overwatch-stats
 
 ## Usage
-	import overwatch.stats
-	stats = overwatch.stats.query('pc', 'kr', '현종환#3104')
+```python
+import overwatch.stats
+stats = overwatch.stats.query('pc', 'kr', '현종환#3104')
+```
 
 # API
 ## overwatch.stats.query(platform, region, battle_tag)
