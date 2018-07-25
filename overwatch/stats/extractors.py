@@ -40,6 +40,26 @@ def extract_level(tree):
     return base_level + int(level.text_content().strip())
 
 
+def extract_endorsement(tree):
+    endorsement = tree.find('.//*[@class="endorsement-level"]')
+
+    shotcaller = endorsement.xpath('.//*[contains(@class, "shotcaller")]')
+    shotcaller = float(shotcaller[0].get('data-value')) if shotcaller else 0.0
+
+    teammate = endorsement.xpath('.//*[contains(@class, "teammate")]')
+    teammate = float(teammate[0].get('data-value')) if teammate else 0.0
+
+    sportsmanship = endorsement.xpath('.//*[contains(@class, "sportsmanship")]')
+    sportsmanship = float(sportsmanship[0].get('data-value')) if sportsmanship else 0.0
+
+    return {
+        'level': int(endorsement.text_content().strip()),
+        'shotcaller': shotcaller,
+        'teammate': teammate,
+        'sportsmanship': sportsmanship,
+    }
+
+
 def extract_icon_url(tree):
     icon = tree.find('.//img[@class="player-portrait"]')
 

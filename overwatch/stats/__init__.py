@@ -5,8 +5,8 @@ import lxml.html
 import requests
 
 from .extractors import (
-    extract_level, extract_icon_url, extract_competitive_rank,
-    extract_time_played_ratios, extract_stats
+    extract_level, extract_endorsement, extract_icon_url,
+    extract_competitive_rank, extract_time_played_ratios, extract_stats
 )
 from .ids import OVERALL_CATEGORY_ID, HERO_CATEGORY_IDS
 from .utils import has_played
@@ -26,6 +26,7 @@ def query(platform, battle_tag):
 
     output = {}
     output['level'] = extract_level(tree)
+    output['endorsement'] = extract_endorsement(tree)
     output['icon_url'] = extract_icon_url(tree)
 
     competitive_rank = extract_competitive_rank(tree)
