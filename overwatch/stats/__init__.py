@@ -11,13 +11,13 @@ from .extractors import (
 from .ids import OVERALL_CATEGORY_ID, HERO_CATEGORY_IDS
 from .utils import has_played
 
-STATS_URL = 'https://playoverwatch.com/en-us/career/{platform}/{region}/{battle_tag}'
+STATS_URL = 'https://playoverwatch.com/en-us/career/{platform}/{battle_tag}'
 
 AVAILABLE_PLAY_MODES = ('quick', 'competitive')
 
 
-def query(platform, region, battle_tag):
-    url = STATS_URL.format(platform=platform, region=region, battle_tag=battle_tag.replace('#', '-'))
+def query(platform, battle_tag):
+    url = STATS_URL.format(platform=platform, battle_tag=battle_tag.replace('#', '-'))
     response = requests.get(url)
     if response.status_code == 404:
         raise ValueError('cannot find the player {battle_tag}'.format(battle_tag=battle_tag))

@@ -2,7 +2,7 @@ from pprint import pprint
 
 import overwatch.stats
 
-stats = overwatch.stats.query('pc', 'kr', '현종환-3104')
+stats = overwatch.stats.query('pc', '현종환-3104')
 pprint(stats, indent=2)
 """
 { 'competitive': { 'heroes': { 'bastion': { 'all_damage_done': 2070,
