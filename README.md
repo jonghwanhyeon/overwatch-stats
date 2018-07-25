@@ -13,7 +13,7 @@ A Python library to query a player's overwatch stats from Battle.net
 ## Usage
 ```python
 import overwatch.stats
-stats = overwatch.stats.query('pc', 'kr', '현종환#3104')
+stats = overwatch.stats.query('pc', '현종환#3104')
 ```
 
 # API
