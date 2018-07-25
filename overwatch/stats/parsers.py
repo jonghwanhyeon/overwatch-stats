@@ -1,6 +1,7 @@
 import datetime
 import re
 
+
 def parse_number(value):
     value = value.replace(',', '')
 
@@ -12,17 +13,18 @@ def parse_number(value):
     except ValueError:
         return float(value)
 
+
 def parse_time(value):
     if value == '--':
         return 0.0
 
-    if ':' in value: # e.g. 03:52
+    if ':' in value:  # e.g. 03:52
         times = list(map(int, value.split(':')))
 
         return datetime.timedelta(**{
             unit: time for unit, time in zip(('seconds', 'minutes', 'hours'), reversed(times))
         }).total_seconds()
-    else: # e.g. 98 HOURS
+    else:  # e.g. 98 HOURS
         patterns = {
             'hours': r'(\d+(?:\.\d+)?) hours?',
             'minutes': r'(\d+(?:\.\d+)?) minutes?',
@@ -32,7 +34,8 @@ def parse_time(value):
         for key, pattern in patterns.items():
             match = re.search(pattern, value, re.IGNORECASE)
             if match:
-                return datetime.timedelta(**{ key: parse_number(match.group(1)) }).total_seconds()
+                return datetime.timedelta(**{key: parse_number(match.group(1))}).total_seconds()
+
 
 def parse_stat_value(value):
     # 41 -> int(41)
@@ -45,5 +48,5 @@ def parse_stat_value(value):
 
     try:
         return parse_number(value)
-    except:
+    except ValueError:
         return parse_time(value)

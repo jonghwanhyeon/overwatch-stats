@@ -29,7 +29,7 @@ HERO_CATEGORY_IDS = {
     'moira': '0x02E00000000001A2',
     'brigitte': '0x02E0000000000195',
 }
-INVERTED_HERO_CATEGORY_IDS = { category_id: hero for hero, category_id in HERO_CATEGORY_IDS.items() }
+INVERTED_HERO_CATEGORY_IDS = {category_id: hero for hero, category_id in HERO_CATEGORY_IDS.items()}
 
 # Taken from https://github.com/SunDwarf/OWAPI/blob/master/owapi/prestige.py
 LEVEL_IDS = {

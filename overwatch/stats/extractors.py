@@ -6,6 +6,8 @@ from .ids import INVERTED_HERO_CATEGORY_IDS, LEVEL_IDS
 from .parsers import parse_number, parse_time, parse_stat_value
 
 _inflector = inflect.engine()
+
+
 def _underscorize_stat_name(name):
     words = re.split(r'\s+', name.lower().replace('-', ' '))
     singular_words = map(_inflector.singular_noun, words)
@@ -13,6 +15,7 @@ def _underscorize_stat_name(name):
     return '_'.join([
         singular_word or word for singular_word, word in zip(singular_words, words)
     ])
+
 
 def extract_play(tree, play_mode):
     if play_mode not in ('quick', 'competitive'):
@@ -22,10 +25,11 @@ def extract_play(tree, play_mode):
         play_mode = 'quickplay'
 
     play = tree.xpath('.//div[@id="{play_mode}"]'.format(play_mode=play_mode))
-    if not play: # e.g. not played the competitive mode
+    if not play:  # e.g. not played the competitive mode
         return None
 
     return play[0]
+
 
 def extract_level(tree):
     level = tree.find('.//*[@class="player-level"]')
@@ -35,17 +39,20 @@ def extract_level(tree):
 
     return base_level + int(level.text_content().strip())
 
+
 def extract_icon_url(tree):
     icon = tree.find('.//img[@class="player-portrait"]')
 
     return icon.get('src').strip()
 
+
 def extract_competitive_rank(tree):
     competitive_rank = tree.find('.//*[@class="competitive-rank"]')
-    if competitive_rank is None: # not played competitive mode or not completed placement matches
+    if competitive_rank is None:  # not played competitive mode or not completed placement matches
         return None
 
     return int(competitive_rank.text_content().strip())
+
 
 def extract_time_played_ratios(tree, play_mode):
     play = extract_play(tree, play_mode)
@@ -65,6 +72,7 @@ def extract_time_played_ratios(tree, play_mode):
 
     return output
 
+
 def extract_stats(tree, play_mode, category_id):
     play = extract_play(tree, play_mode)
     if play is None:
@@ -73,7 +81,7 @@ def extract_stats(tree, play_mode, category_id):
     stats = play.xpath('.//div[@data-group-id="stats" and @data-category-id="{category_id}"]'.format(
         category_id=category_id
     ))
-    if not stats: # e.g. not played a cetain hero
+    if not stats:  # e.g. not played a cetain hero
         return None
 
     stats = stats[0]

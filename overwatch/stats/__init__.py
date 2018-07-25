@@ -15,6 +15,7 @@ STATS_URL = 'https://playoverwatch.com/en-us/career/{platform}/{region}/{battle_
 
 AVAILABLE_PLAY_MODES = ('quick', 'competitive')
 
+
 def query(platform, region, battle_tag):
     url = STATS_URL.format(platform=platform, region=region, battle_tag=battle_tag.replace('#', '-'))
     response = requests.get(url)
