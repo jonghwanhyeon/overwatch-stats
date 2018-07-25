@@ -28,6 +28,7 @@ HERO_CATEGORY_IDS = {
     'doomfist': '0x02E000000000012F',
     'moira': '0x02E00000000001A2',
     'brigitte': '0x02E0000000000195',
+    'wrecking_ball': '0x02E00000000001CA',
 }
 INVERTED_HERO_CATEGORY_IDS = {category_id: hero for hero, category_id in HERO_CATEGORY_IDS.items()}
 
